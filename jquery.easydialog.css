@@ -1,0 +1,13 @@
+
+.easydialog-mask{position:fixed; background:#333; filter:alpha(opacity=50); -moz-opacity:0.5; -khtml-opacity:0.5; opacity:0.5; width:100%; height:100%; z-index:99999;}
+.easydialog{position:fixed; display:block; min-width:200px; border-radius:4px 4px 4px 4px; background-color:#fcfcfc; border:1px solid #e5e5e5; overflow:hidden; font-size:12px; z-index:100000; box-shadow:0 0 10px #333; -moz-box-shadow:0 0 10px #333; -webkit-box-shadow:0 0 10px #333;}
+.easydialog-header{width:100%; padding:5px 0; border-bottom:1px solid #e5e5e5; border-radius:4px 4px 4px 4px; left:0; top:0; background-color:#f7f7f7;}
+.easydialog-caption{font-size:14px; margin:0 0 0 10px; padding:0; color:#666; border-radius:4px 4px 4px 4px;}
+.easydialog-close{color:#999; float:right; margin-right:10px; font-family:arial; font-size:14px; font-weight:700; text-decoration:none;}
+.easydialog-close:hover{color:#333;}
+.easydialog-content{padding:10px;}
+.easydialog-footer{text-align:right; padding:10px;}
+.easydialog-ok, .easydialog-cancel{border: 1px solid #c3c3c3; border-radius:3px 3px 3px 3px; color:#333; background-color:#ececec; cursor:pointer; font-size:12px; line-height:20px; margin:0; padding:0 10px;}
+.easydialog-ok:hover, .easydialog-cancel:hover{background-color:#f4f4f4;}
+.easydialog-ok{background:#444; border-color:#000; color:#fff;}
+.easydialog-ok:hover{background:#222;}

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>EasyDialog</title>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery.easydialog.js"></script>
+		<link rel="stylesheet" type="text/css" href="jquery.easydialog.css" />
+		<!--[if IE 6]>
+		<link rel="stylesheet" type="text/css" href="ie6/jquery.easydialog.css" />
+		<script src="ie6/DD_belatedPNG.js"></script>
+		<script>DD_belatedPNG.fix('.easydialog-mask');</script>
+		<![endif]-->
+		<script type="text/javascript">
+		var obj1, obj2;
+			$(document).ready(function() {
+				$('#demo1').click(function() {
+					obj1 = $.easydialog({
+						'width' : '300px',
+						'showMask' : false,
+						'title' : '对话框标题',
+						'content' : '欢迎使用EsayDialog对话框插件！',
+						'ok' : '确定',
+						'cancel' : '取消',
+						'onConfirm' : function() {
+							alert('您点击【确定】按钮！回调函数返回false时，对话框将不会关闭。');
+							return false;
+						},
+						'onCancel' : function() {
+							alert('您点击了【取消】按钮！');
+						}
+					});
+				});
+				$('#demo2').click(function() {
+					obj1.close();
+				});
+				$('.img').css('cursor', 'zoom-in').click(function() {
+					$.easydialog.closeAll();
+					obj2 = $.easydialog({
+						'width' : '500px',
+						'custom' : '<img class="img_preview" src="'+this.src+'" width="100%" height="100%" />',
+						'escToClose' : true,
+						'onInit' : function() {
+							$('.img_preview').bind('load', function() {
+								obj2.setCenter();
+							});
+						}
+					});
+				});
+			});
+		</script>
+		<style type="text/css">
+		body{ margin:0; padding:0; height:100%; }
+		.page{ padding:10px; }
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<h1>EasyDialog</h1>
+			<p>这是一个jQuery的插件，它可以让您轻松的创建对话框。</p>
+			<h3>它有如下特点：</h3>
+			<ul>
+				<li>支持多对话框同时存在</li>
+				<li>支持拖动对话框</li>
+				<li>支持自定义样式</li>
+				<li>支持回调函数</li>
+				<li>支持半透明遮罩层</li>
+				<li>支持Esc键关闭窗口(所有窗口)</li>
+				<li>夸浏览器，IE6+，FireFox，Google Chrome</li>
+			</ul>
+			<h3>功能测试：</h3>
+			<p>对话框：</p>
+			<p>
+				<input type="button" id="demo1" value="打开对话框" />
+				<input type="button" id="demo2" value="关闭对话框" />
+			</p>
+			<p>图片查看器（Esc键关闭）：</p>
+			<p>
+				<img class="img" src="images/1.jpg" width="160" height="120" />
+				<img class="img" src="images/2.jpg" width="160" height="120" />
+				<img class="img" src="images/3.jpg" width="160" height="120" />
+			</p>
+			<h3>说明文档：</h3>
+			<p><strong>$.easymessager(options)</strong>: 创建对话框，并返回EasyDialog对象。(map)options的可选参数如下：</p>
+			<ul>
+				<li><strong>title</strong>: 对话框标题，默认：[空]</li>
+				<li><strong>content</strong>: 对话框内容，默认：[空]</li>
+				<li><strong>ok</strong>: OK按钮的文字，如果为空，则不显示该按钮。默认：'OK'</li>
+				<li><strong>cancel</strong>: Cancel按钮的文字，如果为空，则不显示该按钮。默认：[空]</li>
+				<li><strong>close</strong>: Close按钮的文字，默认：'Close'</li>
+				<li><strong>custom</strong>: 自定义对话框窗体的HTML，如果定义了该值，则title,content,ok,cancel,close这几个参数无效。默认：[空]</li>
+				<li><strong>width</strong>: 窗体的宽度，默认：'200px'</li>
+				<li><strong>height</strong>: 窗体的高度，默认：根据对话框内容自适应</li>
+				<li><strong>showMask</strong>: 是否显示遮罩层，默认：true</li>
+				<li><strong>showHeader</strong>: 是否显示对话框的头部，如果设置为false，则title,close这几个参数无效。默认：true</li>
+				<li><strong>showFooter</strong>: 是否显示对话框的底部，如果设置为false，则ok,cancel这几个参数无效。默认：true</li>
+				<li><strong>dragable</strong>: 是否可以拖动对话框，如果对话框有头部，则只能按住头部拖动，否则整个对话框都可以拖动。默认：true</li>
+				<li><strong>escToClose</strong>: 是否可以按Esc键关闭，默认：true</li>
+				<li><strong>onInit</strong>: 对话框初始化完成时的回调函数</li>
+				<li><strong>onConfirm</strong>: 点击对话框的确认按钮时的回调函数。回调函数中返回false时，对话框不会关闭。</li>
+				<li><strong>onCancel</strong>: 点击对话框的取消按钮时的回调函数。回调函数中返回false时，对话框不会关闭。</li>
+			</ul>
+			<p>EasyDialog对象可用函数如下：</p>
+			<ul>
+				<li><strong>confirm()</strong>: 确认按钮的响应函数</li>
+				<li><strong>cancel()</strong>: 关闭按钮的响应函数</li>
+				<li><strong>close()</strong>: 关闭当前对话框</li>
+				<li><strong>setFixed()</strong>: 设置对话框为fixed，为了兼容IE6</li>
+				<li><strong>setCenter()</strong>: 设置对话框居中</li>
+				<li><strong>setDragable()</strong>: 设置对话框可拖动</li>
+				<li><strong>setEscToClose()</strong>: 设置按Esc键关闭窗口</li>
+			</ul>
+			<p><strong>$.easymessager.closeAll()</strong>: 关闭所有对话框</p>
+		</div>
+	</body>
+</html>
